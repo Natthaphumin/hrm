@@ -34,3 +34,8 @@ export const getUserRole = async () => {
   console.log(user?.user_metadata);
   return user?.user_metadata?.role;
 };
+
+export async function logout() {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw new Error(error.message);
+}

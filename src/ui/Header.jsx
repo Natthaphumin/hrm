@@ -1,0 +1,30 @@
+import styled from "styled-components";
+
+import UserAvatar from "../features/auth/UserAvatar";
+import HeaderMenu from "./HeaderMenu";
+
+const StyledHeader = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background-color: var(--color-gray-0);
+  padding: 1.2rem 4.8rem;
+  border-bottom: 1px solid var(--color-gray-100);
+
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+function Header() {
+  return (
+    <StyledHeader>
+      <UserAvatar />
+      <HeaderMenu />
+    </StyledHeader>
+  );
+}
+
+export default Header;
