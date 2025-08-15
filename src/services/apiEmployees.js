@@ -1,12 +1,14 @@
 import supabase from "../utils/supabase";
 
 export async function getEmployees() {
-  let { data: employees, error } = await supabase
-    .from("employees")
-    .select("id");
+  const { data, error } = await supabase.from("employees").select("*");
 
-  if (error) throw new Error(error);
-  console.log(employees);
+  if (error) {
+    console.log(error);
+    throw new Error("Employees could not be loaded");
+  }
 
-  return employees;
+  console.log("apiEmployees " + data);
+
+  return data;
 }
