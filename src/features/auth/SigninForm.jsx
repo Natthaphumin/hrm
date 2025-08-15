@@ -3,6 +3,12 @@ import { useSignin } from "./useSignin";
 import { useNavigate } from "react-router-dom";
 import { getUserRole } from "../../services/apiAuth";
 
+import Form from "../../ui/Form";
+import FormRowVertical from "../../ui/FormRowVertical";
+import Input from "../../ui/Input";
+import Button from "../../ui/Button";
+import SpinnerMini from "../../ui/SpinnerMini";
+
 export default function SigninForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,10 +17,10 @@ export default function SigninForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password) return;
     try {
       await handleSignin(email, password);
       const role = await getUserRole();
-      console.log(role)
       if (role === "admin") navigate("/admin");
       else if (role === "mod") navigate("/mod");
       else navigate("/dashboard");
@@ -24,24 +30,37 @@ export default function SigninForm() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h2>Sign In</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" disabled={loading}>
-        {loading ? "Loading..." : "Sign In"}
-      </button>
+    <Form onSubmit={onSubmit}>
+      <FormRowVertical>
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormRowVertical>
+
+      <FormRowVertical>
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormRowVertical>
+
+      <FormRowVertical>
+        <Button
+          size="large"
+          variation="primary"
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? <SpinnerMini /> : "Sign In"}
+        </Button>
+      </FormRowVertical>
+
       {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
+    </Form>
   );
 }

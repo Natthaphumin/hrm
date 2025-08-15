@@ -4,12 +4,12 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AppLayout from "./ui/AppLayout";
 
-import Employees from "./pages/Employees";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import GlobalStyle from "./styles/GlobalStyle";
 
 //Set up React query
 const queryClient = new QueryClient({
@@ -26,6 +26,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
 
+      <GlobalStyle />
+
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
@@ -37,16 +39,6 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
                   <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Employees เข้าด้วย mod/admin */}
-            <Route
-              path="employees"
-              element={
-                <ProtectedRoute allowedRoles={["mod", "admin"]}>
-                  <Employees />
                 </ProtectedRoute>
               }
             />

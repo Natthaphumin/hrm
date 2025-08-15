@@ -1,9 +1,10 @@
 import SignupForm from "../features/auth/SignupForm";
+import Heading from "../ui/Heading";
 
 function Signup() {
   return (
     <div>
-      <h1>Signup</h1>
+      <Heading>Signup</Heading>
       <SignupForm />
     </div>
   );
