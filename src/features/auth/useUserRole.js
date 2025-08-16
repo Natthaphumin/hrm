@@ -1,6 +1,5 @@
-// features/auth/useUserRole.js
 import { useEffect, useState } from "react";
-import supabase from "../../utils/supabase";
+import  supabase  from "../../utils/supabase";
 
 export function useUserRole() {
   const [role, setRole] = useState(null);
