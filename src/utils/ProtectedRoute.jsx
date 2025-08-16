@@ -1,6 +1,7 @@
 import supabase from "./supabase";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Spinner from "../ui/Spinner";
 
 export default function ProtectedRoute({ children, allowedRoles = [] }) {
   const [loading, setLoading] = useState(true);
@@ -24,7 +25,7 @@ export default function ProtectedRoute({ children, allowedRoles = [] }) {
     checkRole();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (!isAllowed) return <Navigate to="/" replace />;
 
   return children;
