@@ -13,6 +13,11 @@ import GlobalStyle from "./styles/GlobalStyle";
 import Learning from "./pages/Learning";
 import Evaluation from "./pages/Evaluation";
 import Exchange from "./pages/Exchange";
+import Phq9 from "./pages/Phq9";
+import Settings from "./pages/Settings";
+import Documents from "./pages/Documents";
+import Attendance from "./pages/Attendance";
+import Organization from "./pages/Organization";
 
 //Set up React query
 const queryClient = new QueryClient({
@@ -66,6 +71,46 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
                   <Exchange />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="phq9"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Phq9 />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="attendance"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Attendance />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="organization"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Organization />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="settings"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="documents"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Documents />
                 </ProtectedRoute>
               }
             />
