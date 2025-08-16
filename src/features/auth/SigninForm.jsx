@@ -31,19 +31,19 @@ export default function SigninForm() {
 
   return (
     <Form onSubmit={onSubmit}>
-      <FormRowVertical>
+      <FormRowVertical label="Email">
         <Input
           type="email"
-          placeholder="Email"
+          placeholder="Jason@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </FormRowVertical>
 
-      <FormRowVertical>
+      <FormRowVertical label="Password">
         <Input
           type="password"
-          placeholder="Password"
+          placeholder="********"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
