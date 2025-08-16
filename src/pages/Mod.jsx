@@ -1,9 +1,7 @@
+import Heading from "../ui/Heading";
+
 function Mod() {
-  return (
-    <div>
-      <h1>Mod</h1>
-    </div>
-  );
+  return <Heading as="h1">Mod</Heading>;
 }
 
 export default Mod;

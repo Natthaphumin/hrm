@@ -16,7 +16,7 @@ const LoginLayout = styled.main`
 function Signin() {
   return (
     <LoginLayout>
-      <Heading>Signin</Heading>
+      <Heading as="h1">Signin</Heading>
       <SigninForm />
     </LoginLayout>
   );

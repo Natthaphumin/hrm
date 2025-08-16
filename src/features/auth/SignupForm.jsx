@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { useSignup } from "./useSignup";
+import Form from "../../ui/Form";
+import Input from "../../ui/Input";
+import Select from "../../ui/Select";
+import Button from "../../ui/Button";
+import SpinnerMini from "../../ui/SpinnerMini";
+import FormRowVertical from "../../ui/FormRowVertical";
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
@@ -18,29 +24,36 @@ export default function SignupForm() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h2>Sign Up</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
-        <option value="user">User</option>
-        <option value="mod">Moderator</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button type="submit" disabled={loading}>
-        {loading ? "Loading..." : "Sign Up"}
-      </button>
+    <Form onSubmit={onSubmit}>
+      <FormRowVertical label="Email">
+        <Input
+          type="email"
+          placeholder="Jason@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical label="Password">
+        <Input
+          type="password"
+          placeholder="********"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormRowVertical>
+      <FormRowVertical>
+        <Select value={role} onChange={(e) => setRole(e.target.value)}>
+          <option value="user">User</option>
+          <option value="mod">Moderator</option>
+          <option value="admin">Admin</option>
+        </Select>
+      </FormRowVertical>
+      <FormRowVertical>
+        <Button type="submit" disabled={loading}>
+          {loading ? <SpinnerMini /> : "Sign Up"}
+        </Button>
+      </FormRowVertical>
       {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
+    </Form>
   );
 }

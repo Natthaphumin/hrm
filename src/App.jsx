@@ -10,6 +10,8 @@ import Signin from "./pages/Signin";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import GlobalStyle from "./styles/GlobalStyle";
+import Learning from "./pages/users/Learning";
+import Evaluation from "./pages/users/Evaluation";
 
 //Set up React query
 const queryClient = new QueryClient({
@@ -39,6 +41,22 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="learning"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Learning />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="ld-evaluation"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Evaluation />
                 </ProtectedRoute>
               }
             />

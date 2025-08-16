@@ -1,9 +1,7 @@
+import Heading from "../ui/Heading";
+
 function Admin() {
-  return (
-    <div>
-      <h1>Admin</h1>
-    </div>
-  );
+  return <Heading as="h1">Admin</Heading>;
 }
 
 export default Admin;
