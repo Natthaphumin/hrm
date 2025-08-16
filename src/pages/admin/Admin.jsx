@@ -1,4 +1,4 @@
-import Heading from "../ui/Heading";
+import Heading from "../../ui/Heading";
 
 function Admin() {
   return <Heading as="h1">Admin</Heading>;

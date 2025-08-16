@@ -4,14 +4,15 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AppLayout from "./ui/AppLayout";
 
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/users/Dashboard";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
-import Admin from "./pages/Admin";
+import Admin from "./pages/admin/Admin";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import GlobalStyle from "./styles/GlobalStyle";
-import Learning from "./pages/users/Learning";
-import Evaluation from "./pages/users/Evaluation";
+import Learning from "./pages/Learning";
+import Evaluation from "./pages/Evaluation";
+import Exchange from "./pages/Exchange";
 
 //Set up React query
 const queryClient = new QueryClient({
@@ -57,6 +58,14 @@ function App() {
               element={
                 <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
                   <Evaluation />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="exchange"
+              element={
+                <ProtectedRoute allowedRoles={["user", "mod", "admin"]}>
+                  <Exchange />
                 </ProtectedRoute>
               }
             />
