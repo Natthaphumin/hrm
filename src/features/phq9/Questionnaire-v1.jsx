@@ -1,12 +1,11 @@
 import { useState } from "react";
 
+import option from "./options";
 import question from "./question";
 
 import Button from "../../ui/Button";
 import styled from "styled-components";
 import FormRow from "../../ui/FormRow";
-import useOptions from "./useOptions";
-import Spinner from "../../ui/Spinner";
 
 // Styled Components
 const FormWrapper = styled.form`
@@ -65,11 +64,6 @@ const OptionText = styled.span`
 function Questionnaire({ onSubmit }) {
   // เก็บคำตอบเป็น object { questionId: value }
   const [answers, setAnswers] = useState({});
-
-  const { isPending, options = [], error } = useOptions();
-
-  if (isPending) return <Spinner />;
-  if (error) return <p>เกิดข้อผิดพลาด: {error.message}</p>;
 
   function getResult(score) {
     if (score <= 4) {
@@ -134,17 +128,17 @@ function Questionnaire({ onSubmit }) {
           <QuestionBlock key={q.id}>
             <QuestionText>{q.text}</QuestionText>
             <OptionsWrapper>
-              {options.map((opt) => (
-                <OptionLabel key={opt.id}>
+              {option.map((opt) => (
+                <OptionLabel key={opt.value}>
                   <input
                     type="radio"
                     name={`q-${q.id}`}
-                    value={opt.score} // ใช้ score ที่มาจาก table
-                    checked={answers[q.id] === opt.score}
-                    onChange={() => handleChange(q.id, opt.score)}
+                    value={opt.value}
+                    checked={answers[q.id] === opt.value}
+                    onChange={() => handleChange(q.id, opt.value)}
                     required
                   />
-                  <OptionText>{opt.name}</OptionText>
+                  <OptionText>{opt.label}</OptionText>
                 </OptionLabel>
               ))}
             </OptionsWrapper>
